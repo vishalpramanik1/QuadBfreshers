@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .main {
+    height: 100%;
+    background-color: #191d28;
+    color: rgb(108, 202, 203);
+    margin: 0px;
+    padding: 0px;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:50px;
+  }
+  .button-main{
+    display: flex;
+  }
+  .button{
+    border:10px solid rgb(46, 50, 65);
+    background-color: rgb(46, 50, 65);
+    border-radius: 10%;
+    margin:10px;
+  }
+  .telegram{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding:10px;
+  }
+  .header2{
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .multiple{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  table {
+      /* Add your CSS here */
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th{
+      padding: 15px;
+      text-align: center;
+      font-size: larger;
+      margin-top: 200px;
+      background-color: #191d28;
+      color:gray
+    }
+    td{
+      text-align: center;
+      font-size: larger;
+    }
+    tr{
+      border: 15px solid #191d28;
+      height: 50px;
+      border-radius: 20px;
+      background-color: #2E3241;
+      margin: 100 px;
+    }
+   
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="header">
+      <h1>HODLINFO</h1>
+      <div class="button-main">
+        <div class="button">
+          <button>INR</button>
+        </div>
+        <div class="button">
+          <button>BTC</button>
+        </div>
+        <div class="button">
+          <button>BUY BTC</button>
+        </div>
+
+      </div>
+      <div class="telegram">
+        <button class="button-telegram">connect to telegram</button>
+        <button clas="button-round">round</button>
+      </div>
+    </div>
+
+    <div class="header2">
+      <div><h2 style="color: gray;"> Best Price to Trade </h2></div>
+      <div class="multiple">
+        <h4 style="margin-right:20px ;">0.29%</h4>
+        <h4 style="margin-right:20px ;">0.94%</h4>
+        <h1 >₹210317</h1>
+        <h4 style="margin-left:20px ;">1.32%</h4>
+        <h4 style="margin-left:20px ;">3.16%</h4>
+      </div>
+      <div style="color: gray;"><h6>Average BTC/INR net price including commission</h6></div>
+    </div>
+    <div class="title">
+
+    </div>
+   <div class="data">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Platform</th>
+        <th>Last Trades Price</th>
+        <th>Buy/Sell Price</th>
+        <th>Difference</th>
+        <th>Savings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tickets.forEach(function(ticker, index) { %>
+        <tr>
+            <td><%= index + 1 %></td>
+          <td><%= ticker.name %></td>
+          <td>₹<%= ticker.last %></td>
+          <td>₹<%= ticker.buy %>/ <%= ticker.sell %></td>
+          <td style="color: <%= ((ticker.sell - ticker.buy)/(ticker.buy)) < 0 ? 'red' : 'green' %>;">
+            ₹<%= ((ticker.sell - ticker.buy)/(ticker.buy+1)* 100).toFixed(2) %>
+          </td>
+          <td style="color: <%= (ticker.sell - ticker.buy) < 0 ? 'red' : 'green' %>;">
+            <%= (ticker.sell - ticker.buy) < 0 ? '▼' : '▲' %>
+            ₹<%= Math.abs(ticker.sell - ticker.buy).toFixed(2) %>
+          </td>
+          
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+
+  </div>
+</body>
+
+</html>
